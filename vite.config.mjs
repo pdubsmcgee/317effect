@@ -18,6 +18,7 @@ function collectHtml(dir, root = dir, list = []) {
 const inputs = Object.fromEntries(collectHtml(process.cwd()));
 
 export default defineConfig({
+  base: '/317effect/',
   build: {
     rollupOptions: { input: inputs }
   }
