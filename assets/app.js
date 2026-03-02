@@ -91,7 +91,7 @@ function setupStatus() {
   const log = document.querySelector('[data-system-log]');
   if (!clock || !countdown || !banner || !latency || !density || !log) return;
 
-  const states = ['STABLE', 'DRIFTING', 'PATCH IN PROGRESS'];
+  const states = ['STABLE', 'MONITORING DRIFT', 'CALIBRATING', 'PATCH STAGING'];
   const logs = [
     'Observer relay verified baseline continuity.',
     'Doorway threshold anomalies below action limit.',
@@ -99,7 +99,12 @@ function setupStatus() {
     'Echo packet delayed 230ms in sector local.',
     'Routine patch queue synchronized to 03:17 index.',
     'Cross-region drift estimate narrowed to ±3 minutes.',
-    'Field annotation backlog reconciled with report index.'
+    'Field annotation backlog reconciled with report index.',
+    'Coffee ring detected on console B; no signal contamination observed.',
+    'Two contradictory timestamps converged after context refresh.',
+    'Ambient déjà vu elevated; advisory: label your tabs before the window.',
+    'Mirror-node handshake completed with acceptable existential overhead.',
+    'Mnemonic cache warmed and serving likely outcomes.'
   ];
 
   function next317(now) {
@@ -108,6 +113,10 @@ function setupStatus() {
     if (next <= now) next.setDate(next.getDate() + 1);
     return next;
   }
+
+  let currentStateIndex = 0;
+  let stateCooldown = 0;
+  let nextLogAt = 0;
 
   setInterval(() => {
     const now = new Date();
@@ -123,17 +132,28 @@ function setupStatus() {
     const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
     countdown.textContent = diffMarker <= 5 ? 'MAINTENANCE WINDOW ACTIVE' : `${h}:${m}:${s} until next 03:17`;
 
-    banner.textContent = diffMarker <= 5 ? 'PATCH IN PROGRESS' : states[now.getSeconds() % states.length];
-    banner.classList.toggle('active', diffMarker <= 5);
+    if (diffMarker <= 5) {
+      banner.textContent = 'PATCH IN PROGRESS';
+      banner.classList.add('active');
+    } else {
+      banner.classList.remove('active');
+      if (stateCooldown <= 0) {
+        currentStateIndex = (currentStateIndex + 1) % states.length;
+        stateCooldown = 14;
+      }
+      banner.textContent = states[currentStateIndex];
+      stateCooldown -= 1;
+    }
 
     latency.textContent = `${18 + Math.floor(Math.random() * 37)} ms`;
     density.textContent = `${0.42 + Math.random() * 0.5}`.slice(0, 4);
 
-    if (now.getSeconds() % 4 === 0) {
+    if (!nextLogAt || now.getTime() >= nextLogAt) {
       const p = document.createElement('p');
       p.textContent = `[${now.toLocaleTimeString()}] ${logs[Math.floor(Math.random() * logs.length)]}`;
       log.prepend(p);
-      while (log.children.length > 6) log.removeChild(log.lastChild);
+      while (log.children.length > 10) log.removeChild(log.lastChild);
+      nextLogAt = now.getTime() + (5000 + Math.floor(Math.random() * 5000));
     }
   }, 1000);
 }
