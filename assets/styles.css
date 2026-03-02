@@ -93,4 +93,10 @@ h2 { font-size: clamp(1.4rem, 3.2vw, 2.2rem); margin-top: 0; }
 .log p { margin: 0 0 .35rem; color: var(--muted); }
 footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; padding: 1.2rem 0 2rem; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-@media (max-width: 700px){ .links { row-gap: .35rem; } }
+@media (max-width: 900px) { .map { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px){
+  .nav { align-items: flex-start; flex-direction: column; }
+  .links { row-gap: .35rem; }
+  .map { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 460px) { .map { grid-template-columns: 1fr; } }
