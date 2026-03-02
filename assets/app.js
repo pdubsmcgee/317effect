@@ -1,11 +1,23 @@
 const path = window.location.pathname;
 
+function normalizePath(input) {
+  if (!input) return '/';
+  const normalized = input.replace(/\/index\.html$/, '');
+  if (normalized.length > 1 && normalized.endsWith('/')) return normalized.slice(0, -1);
+  return normalized || '/';
+}
+
+const baseUrl = document.querySelector('meta[name="site-base"]')?.content || '/';
+
 document.querySelectorAll('.links a').forEach((link) => {
-  if (link.getAttribute('href') === path) link.classList.add('active');
+  const href = link.getAttribute('href');
+  if (!href) return;
+  if (normalizePath(href) === normalizePath(path)) link.classList.add('active');
 });
 
 async function loadReports() {
-  const res = await fetch('/data/reports.json');
+  const reportsUrl = new URL('data/reports.json', window.location.origin + baseUrl);
+  const res = await fetch(reportsUrl);
   if (!res.ok) throw new Error('Failed to load reports index');
   return res.json();
 }
@@ -17,28 +29,38 @@ function formatDate(input) {
 async function renderLatest() {
   const list = document.querySelector('[data-latest-reports]');
   if (!list) return;
-  const reports = await loadReports();
-  list.innerHTML = reports.slice(0, 3).map((report) => `
-    <li class="report-item">
-      <a href="/residue-reports/${report.slug}/">${report.title}</a>
-      <div class="meta">${formatDate(report.date)} · ${report.timestamp} · ${report.severity}</div>
-    </li>`).join('');
+  try {
+    const reports = await loadReports();
+    list.innerHTML = reports.slice(0, 3).map((report) => `
+      <li class="report-item">
+        <a href="/residue-reports/${report.slug}/">${report.title}</a>
+        <div class="meta">${formatDate(report.date)} · ${report.timestamp} · ${report.severity}</div>
+      </li>`).join('');
+  } catch (error) {
+    console.error(error);
+    list.innerHTML = '<li class="meta">Report feed is temporarily unavailable.</li>';
+  }
 }
 
 async function renderReportList() {
   const mount = document.querySelector('[data-report-list]');
   if (!mount) return;
-  const reports = await loadReports();
-  mount.innerHTML = reports.map((report) => `
-    <article class="panel report-item">
-      <div class="meta">${formatDate(report.date)} · ${report.timestamp}</div>
-      <h3><a href="/residue-reports/${report.slug}/">${report.title}</a></h3>
-      <p>${report.summary}</p>
-      <div class="report-tags">
-        <span class="badge ${report.severity}">${report.severity}</span>
-        ${report.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
-      </div>
-    </article>`).join('');
+  try {
+    const reports = await loadReports();
+    mount.innerHTML = reports.map((report) => `
+      <article class="panel report-item">
+        <div class="meta">${formatDate(report.date)} · ${report.timestamp}</div>
+        <h3><a href="/residue-reports/${report.slug}/">${report.title}</a></h3>
+        <p>${report.summary}</p>
+        <div class="report-tags">
+          <span class="badge ${report.severity}">${report.severity}</span>
+          ${report.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+      </article>`).join('');
+  } catch (error) {
+    console.error(error);
+    mount.innerHTML = '<article class="panel"><p class="meta">Unable to load report index right now. Please try again shortly.</p></article>';
+  }
 }
 
 function setupMap() {
@@ -114,7 +136,7 @@ function setupStatus() {
   }, 1000);
 }
 
-renderLatest().catch(console.error);
-renderReportList().catch(console.error);
+renderLatest();
+renderReportList();
 setupMap();
 setupStatus();
