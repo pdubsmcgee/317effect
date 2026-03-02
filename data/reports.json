@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Synchronization Window Anomaly: Kettle Sequence",
+    "date": "2026-02-07",
+    "severity": "high",
+    "timestamp": "03:19",
+    "tags": [
+      "synchronization",
+      "domestic",
+      "sequence-drift"
+    ],
+    "summary": "Kettle indicator changed state before power switch was toggled, then corrected.",
+    "slug": "synchronization-window-anomaly"
+  },
+  {
+    "title": "Residual Echo Affect After Conversation",
+    "date": "2026-02-01",
+    "severity": "low",
+    "timestamp": "14:11",
+    "tags": [
+      "echo-residue",
+      "affect",
+      "conversation"
+    ],
+    "summary": "Subject felt a 'second emotional afterimage' minutes after a neutral discussion.",
+    "slug": "echo-residue-feeling"
+  },
+  {
+    "title": "Patch Latency Déjà Vu (Transit Platform)",
+    "date": "2026-01-25",
+    "severity": "high",
+    "timestamp": "17:03",
+    "tags": [
+      "deja-vu",
+      "patch-latency",
+      "transit"
+    ],
+    "summary": "Full-scene familiarity spike preceded a delayed announcement by 9 seconds.",
+    "slug": "patch-latency-dejavu"
+  },
+  {
+    "title": "Unprompted 03:17 Awakening",
+    "date": "2026-01-21",
+    "severity": "medium",
+    "timestamp": "03:17",
+    "tags": [
+      "sleep",
+      "03:17",
+      "sync-window"
+    ],
+    "summary": "Observer woke exactly at 03:17 without alarm for five consecutive nights.",
+    "slug": "waking-at-317"
+  },
+  {
+    "title": "Text Loop During Routine Email Review",
+    "date": "2026-01-16",
+    "severity": "medium",
+    "timestamp": "08:42",
+    "tags": [
+      "text-loop",
+      "reading",
+      "latency"
+    ],
+    "summary": "A single sentence required four reads despite normal alertness and caffeine baseline.",
+    "slug": "rereading-line"
+  },
+  {
+    "title": "Doorway Pause at Unit 4B",
+    "date": "2026-01-12",
+    "severity": "low",
+    "timestamp": "03:17",
+    "tags": [
+      "doorway",
+      "threshold",
+      "pause"
+    ],
+    "summary": "Subject paused mid-step in a doorway and forgot destination for 2.4 seconds.",
+    "slug": "doorway-pause"
+  }
+]
