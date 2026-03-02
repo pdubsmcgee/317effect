@@ -6,8 +6,10 @@ timestamp: "14:11"
 tags: ["echo-residue", "affect", "conversation"]
 summary: "Subject felt a 'second emotional afterimage' minutes after a neutral discussion."
 ---
-No conflict or stressors present, yet emotional response appeared in delayed duplicate.
+No conflict or stressors present, yet emotional response appeared in delayed duplicate approximately four minutes after conversation ended.
 
-Observer compared notes with conversation partner, who reported no similar effect.
+Observer compared notes with conversation partner, who reported no similar effect and confirmed neutral tone throughout the exchange.
 
-Suggested note: annotate latency between event and echoed feeling.
+Ambient conditions were stable (quiet room, no interruptions), making timing offset the most notable variable.
+
+Suggested note: annotate latency between event and echoed feeling, then compare with sleep and stress baseline for the day.
