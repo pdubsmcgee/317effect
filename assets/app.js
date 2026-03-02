@@ -67,11 +67,11 @@ function setupMap() {
   const panel = document.querySelector('[data-map-detail]');
   if (!panel) return;
   const notes = {
-    'Doorway Threshold': 'Threshold transitions often produce a brief intent cache miss. Observer note: pause and note your previous objective before crossing.',
-    'Text Loop': 'Repeated line scanning may indicate delayed semantic commit. Observer note: mark the line and compare elapsed time perception.',
-    'Object Misplacement': 'Item location drift can occur during minor world-state rebases. Observer note: document last confirmed placement and context.',
-    'Name-Recall Delay': 'Transient lookup latency in autobiographical index. Observer note: capture recovery time and emotional baseline.',
-    '3:17 Awakening': 'Common synchronization edge event when local patch queue flushes. Observer note: log environmental audio and dream continuity.'
+    'Doorway Threshold': 'Threshold transitions can produce brief intent cache misses, especially during routine movement. Observer prompt: note objective before crossing, elapsed pause length, and what restored task memory.',
+    'Text Loop': 'Repeated line scanning may indicate delayed semantic commit rather than visual failure. Observer prompt: mark the exact phrase, compare silent vs spoken reading, and record comprehension recovery trigger.',
+    'Object Misplacement': 'Item location drift is usually reported after context switching between rooms or tasks. Observer prompt: document last confirmed placement, intermediary actions, and whether location was later validated.',
+    'Name-Recall Delay': 'Transient lookup latency appears as a familiar-name stall with rapid recovery. Observer prompt: capture recovery time, emotional baseline, and whether a contextual cue resolved recall.',
+    '3:17 Awakening': 'Common synchronization edge event when local patch queue flushes in the archive fiction model. Observer prompt: log ambient audio, first thought, dream continuity, and return-to-sleep latency.'
   };
 
   document.querySelectorAll('[data-map-node]').forEach((button) => {
@@ -97,7 +97,9 @@ function setupStatus() {
     'Doorway threshold anomalies below action limit.',
     'Narrative checksum mismatch auto-resolved.',
     'Echo packet delayed 230ms in sector local.',
-    'Routine patch queue synchronized to 03:17 index.'
+    'Routine patch queue synchronized to 03:17 index.',
+    'Cross-region drift estimate narrowed to ±3 minutes.',
+    'Field annotation backlog reconciled with report index.'
   ];
 
   function next317(now) {
