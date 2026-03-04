@@ -26,7 +26,7 @@ const markdownToHtml = (md) => md.split(/\n\n+/).map((block) => `<p>${block.repl
 function detailHtml(report) {
   return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${report.title}</title><link rel="stylesheet" href="/assets/styles.css"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="container nav"><a class="brand" href="/">3:17 Interference Archive</a><nav class="links" aria-label="Primary"><a href="/">Home</a><a href="/global-synchronization/">Global Sync</a><a href="/echo-mapping/">Echo Mapping</a><a href="/residue-reports/">Residue Reports</a><a href="/status/">Status</a><a href="/about/">About</a></nav></div></header>
+<header class="site-header"><div class="container nav"><a class="brand" href="/">3:17 Counter-Archive</a><nav class="links" aria-label="Primary"><a href="/">Home</a><a href="/global-synchronization/">Counter Model</a><a href="/echo-mapping/">Pattern Mapping</a><a href="/residue-reports/">Case Reviews</a><a href="/field-guide/">Method Guide</a><a href="/status/">Status</a><a href="/about/">About</a></nav></div></header>
 <main id="main" class="container"><article class="panel"><h1>${report.title}</h1><p class="meta">${report.date} · ${report.timestamp}</p><p>${report.summary}</p><div class="report-tags"><span class="badge ${report.severity}">${report.severity}</span>${report.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}</div><section class="section">${report.html}</section></article></main>
 <footer><div class="container"><a href="/residue-reports/">← Back to reports index</a></div></footer><script type="module" src="/assets/app.js"></script></body></html>`;
 }
