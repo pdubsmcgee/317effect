@@ -21,8 +21,6 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: './dist',
-    rollupOptions: { input: inputs },
-    // Important for Workers compatibility
     rollupOptions: {
       input: inputs,
       output: {

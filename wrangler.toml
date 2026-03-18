@@ -5,12 +5,10 @@ compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
   ASSET_MANIFEST = ""
+  ASSETS_URL = ""
 
 [env.production]
   name = "theylive-site-prod"
-
-[vars]
-  ASSETS_URL = ""
 
 [site]
   bucket = "./dist"
