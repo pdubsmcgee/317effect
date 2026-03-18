@@ -12,4 +12,3 @@ compatibility_flags = [ "nodejs_compat" ]
 
 [site]
   bucket = "./dist"
-  entry-point = "workers-site"
