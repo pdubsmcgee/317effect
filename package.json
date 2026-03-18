@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "npm run build:reports && vite build",
     "build:reports": "node scripts/build-reports.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "wrangler deploy --env production"
   },
   "devDependencies": {
     "vite": "^5.4.10"
